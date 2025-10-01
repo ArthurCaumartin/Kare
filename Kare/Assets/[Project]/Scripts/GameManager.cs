@@ -41,12 +41,12 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        SceneManager.LoadScene("End");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void OnLevelUp(InputValue value)
     {
-        if(value.Get<float>() > 0.5f)
+        if (value.Get<float>() > 0.5f)
             Level++;
     }
 }
