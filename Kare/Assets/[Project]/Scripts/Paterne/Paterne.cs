@@ -3,9 +3,13 @@ using UnityEngine;
 public class Paterne : MonoBehaviour
 {
     [SerializeField] protected int damage = 10;
+    [Space]
+    [SerializeField] private float _damageRaduis = 0.5f;
+    [SerializeField] private Vector2 _damageOffset;
+    [Space]
     protected Camera _camera;
     protected Transform player;
-    
+
     public virtual void Init(Camera camera, GameObject player)
     {
         this._camera = camera;
@@ -35,7 +39,6 @@ public class Paterne : MonoBehaviour
         Vector3 worldPosition = _camera.ScreenToWorldPoint(screenPosition);
         return new Vector2(worldPosition.x, worldPosition.y);
     }
-
     protected Vector2 GetPosOutCamera()
     {
         float screenX = Random.Range(0, Screen.width);
@@ -59,5 +62,23 @@ public class Paterne : MonoBehaviour
         Vector3 screenPosition = new Vector3(screenX, screenY, _camera.nearClipPlane);
         Vector3 worldPosition = _camera.ScreenToWorldPoint(screenPosition);
         return new Vector2(worldPosition.x, worldPosition.y);
+    }
+
+    protected Damagable TryGetDamagable()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)transform.position + _damageOffset, 0.5f);
+        foreach (var hit in hits)
+        {
+            Damagable damagable = hit.GetComponent<Damagable>();
+            if (damagable)
+                return damagable;
+        }
+        return null;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere((Vector2)transform.position + _damageOffset, _damageRaduis);
     }
 }

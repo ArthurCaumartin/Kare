@@ -6,7 +6,7 @@ public class Damagable : MonoBehaviour
     public int Health => health;
     private int _maxHealth = 100;
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage, Transform sourceTransform = null)
     {
         health -= damage;
         if (health <= 0)
