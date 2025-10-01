@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Paterne : MonoBehaviour
 {
+    [SerializeField] protected int damage = 10;
     protected Camera _camera;
     protected Transform player;
     

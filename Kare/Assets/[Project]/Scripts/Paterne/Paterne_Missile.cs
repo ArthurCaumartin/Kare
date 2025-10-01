@@ -38,4 +38,14 @@ public class Paterne_Missile : Paterne
         yield return new WaitForSeconds(duration);
         _isTracking = false;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Damagable damagable = other.GetComponent<Damagable>();
+        if (damagable)
+        {
+            damagable.TakeDamage(damage);
+            Destroy(gameObject);
+        }
+    }
 }
