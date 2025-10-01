@@ -1,37 +1,34 @@
-using System.Collections;
 using UnityEngine;
 
-public class Paterne_Missile : Paterne
+public class Paterne_Crescent : Paterne
 {
     [SerializeField] private float _moveSpeed = 5f;
-    [SerializeField] private float _rotateSpeed = 5;
-    [SerializeField] private float _trackingDuration = 3f;
-
-
+    [SerializeField] private float _rotateSpeed = 5f;
+    [SerializeField] private float _centerOffsetRadius = 2f;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     private Vector2 _direction;
-    private bool _isTracking = true;
 
     public override void Init(Camera camera, GameObject player)
     {
         base.Init(camera, player);
         transform.position = GetPosOutCamera();
-        _isTracking = true;
+
+        Vector2 centreOffset = Random.insideUnitCircle * _centerOffsetRadius;
+        _direction = centreOffset - (Vector2)transform.position;
+        transform.up = _direction.normalized;
     }
 
     protected override void Start()
     {
         base.Start();
-        StartCoroutine(TrackDelay(_trackingDuration));
+        Destroy(gameObject, 15f);
     }
 
     protected override void Update()
     {
         base.Update();
-        _direction = (player.position - transform.position).normalized;
-        if (_isTracking)
-            transform.up = Vector2.Lerp(transform.up, _direction, Time.deltaTime * _rotateSpeed);
-
         transform.Translate(Vector2.up * _moveSpeed * Time.deltaTime);
+        _spriteRenderer.transform.Rotate(Vector3.forward, _rotateSpeed * Time.deltaTime);
 
         Damagable damagable = TryGetDamagable();
         if (damagable != null)
@@ -39,11 +36,5 @@ public class Paterne_Missile : Paterne
             damagable.TakeDamage(damage, transform);
             Destroy(gameObject);
         }
-    }
-
-    private IEnumerator TrackDelay(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        _isTracking = false;
     }
 }

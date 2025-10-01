@@ -168,11 +168,13 @@ MonoBehaviour:
   - _spawnDelay: 2
     _paternePerSpawn: 1
     _paternePrefabList:
+    - {fileID: -8423787775486249848, guid: 89953bd965703fb48b2a2e6f4a1d6ec2, type: 3}
     - {fileID: 1249288082576761991, guid: 4518afd6edb0d5540bd0e54e8481ce3a, type: 3}
   - _spawnDelay: 1
     _paternePerSpawn: 1
     _paternePrefabList:
     - {fileID: 1249288082576761991, guid: 4518afd6edb0d5540bd0e54e8481ce3a, type: 3}
+    - {fileID: -8423787775486249848, guid: 89953bd965703fb48b2a2e6f4a1d6ec2, type: 3}
   - _spawnDelay: 0.5
     _paternePerSpawn: 1
     _paternePrefabList:
@@ -571,15 +573,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2738600696494041906, guid: 05c28e2287c832c4dab348d1f68c2821, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2738600696494041906, guid: 05c28e2287c832c4dab348d1f68c2821, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2738600696494041906, guid: 05c28e2287c832c4dab348d1f68c2821, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2738600696494041906, guid: 05c28e2287c832c4dab348d1f68c2821, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -661,8 +663,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 550870003806180500}
   - {fileID: 1586493170}
   - {fileID: 223473269}
   - {fileID: 5326112439243876052}
   - {fileID: 479035655}
+  - {fileID: 550870003806180500}
