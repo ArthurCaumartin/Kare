@@ -1,0 +1,34 @@
+{
+    "name": "Action",
+    "maps": [
+        {
+            "name": "base",
+            "id": "9e97fff3-6dec-4a71-b41b-d42535398a69",
+            "actions": [
+                {
+                    "name": "MouseMove",
+                    "type": "Value",
+                    "id": "e3f523b9-d477-40a3-95c9-30ac8d8a34ed",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8a0b553a-7792-432a-b5e9-22ca440dc071",
+                    "path": "<Pointer>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
