@@ -38,7 +38,7 @@ public class Paterne_Missile : Paterne
         Damagable damagable = TryGetDamagable();
         if (damagable != null)
         {
-            damagable.TakeDamage(damage);
+            damagable.TakeDamage(damage, transform);
             Destroy(gameObject);
         }
     }
