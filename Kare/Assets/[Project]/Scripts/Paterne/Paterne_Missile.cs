@@ -6,6 +6,9 @@ public class Paterne_Missile : Paterne
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _rotateSpeed = 5;
     [SerializeField] private float _trackingDuration = 3f;
+    [Space]
+    [SerializeField] private float _damageRaduis = 0.5f;
+    [SerializeField] private Vector2 _damageOffset;
 
     private Vector2 _direction;
     private bool _isTracking = true;
@@ -31,6 +34,13 @@ public class Paterne_Missile : Paterne
             transform.up = Vector2.Lerp(transform.up, _direction, Time.deltaTime * _rotateSpeed);
 
         transform.Translate(Vector2.up * _moveSpeed * Time.deltaTime);
+
+        Damagable damagable = TryGetDamagable();
+        if (damagable != null)
+        {
+            damagable.TakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 
     private IEnumerator TrackDelay(float duration)
@@ -39,13 +49,21 @@ public class Paterne_Missile : Paterne
         _isTracking = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private Damagable TryGetDamagable()
     {
-        Damagable damagable = other.GetComponent<Damagable>();
-        if (damagable)
+        Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)transform.position + _damageOffset, 0.5f);
+        foreach (var hit in hits)
         {
-            damagable.TakeDamage(damage);
-            Destroy(gameObject);
+            Damagable damagable = hit.GetComponent<Damagable>();
+            if (damagable)
+                return damagable;
         }
+        return null;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere((Vector2)transform.position + _damageOffset, _damageRaduis);
     }
 }
